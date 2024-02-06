@@ -1,5 +1,3 @@
-**Please note that the up-to-date official repository has been moved to https://gitlab.telecom-paris.fr/RING/SAR2SAR**
-
 # SAR2SAR: A Semi-Supervised Despeckling Algorithm for SAR Images
 ## Emanuele Dalsasso, Loïc Denis, Florence Tupin
 ## Abstract
