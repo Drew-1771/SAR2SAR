@@ -65,7 +65,7 @@ def save_sar_images(
     threshold = np.mean(noisy) + 3 * np.std(noisy)
     if threshold == 0:
         generate_png = False
-        print("[!] Threshold calculated to be 0, could not store as PNG properly")
+        print("\t[!] Threshold calculated to be 0, could not store as PNG properly")
 
     denoisedfilename = Path(save_dir) / str("denoised_" + imagename)
     if not denoisedfilename.exists():
@@ -73,11 +73,11 @@ def save_sar_images(
     denoisedfilename = str(denoisedfilename)
     np.save(denoisedfilename, denoised)
     if debug:
-        print(f"[*] Saved to {denoisedfilename}")
+        print(f"\t[*] Saved to {denoisedfilename}")
     if generate_png:
         store_data_and_plot(denoised, threshold, denoisedfilename)
         if debug:
-            print(f"[*] Saved png of {denoisedfilename.replace('npy', 'png')}")
+            print(f"\t[*] Saved png of {denoisedfilename.replace('npy', 'png')}")
 
     if store_noisy:
         noisyfilename = Path(save_dir) / str("noisy_" + imagename)
@@ -86,8 +86,8 @@ def save_sar_images(
         noisyfilename = str(noisyfilename)
         np.save(noisyfilename, noisy)
         if debug:
-            print(f"[*] Saved to {noisyfilename}")
+            print(f"\t[*] Saved to {noisyfilename}")
         if generate_png:
             store_data_and_plot(noisy, threshold, noisyfilename)
             if debug:
-                print(f"[*] Saved png of {noisyfilename.replace('npy', 'png')}")
+                print(f"\t[*] Saved png of {noisyfilename.replace('npy', 'png')}")

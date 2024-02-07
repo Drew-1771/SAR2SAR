@@ -1,7 +1,7 @@
 from glob import glob
 
-from utils import *
-from u_net import *
+from .utils import *
+from .u_net import *
 
 
 class Denoiser(object):
@@ -166,10 +166,29 @@ def run_model(
     save_dir: str,
     checkpoint_dir: str = None,
     stride=64,
-    store_noisy=False,
-    generate_png=False,
+    store_noisy=True,
+    generate_png=True,
     debug=True,
-):
+) -> None:
+    """
+    Runs the despeckling algorithm
+
+    Arguments:
+        input_dir: Path to a directory containing the files to be despeckled. Files need to be in .npy
+                   format
+        save_dir: Path to a directory where the files will be saved
+        checkpoint_dir: Path to a directory containing the tensorflow checkpoints, if left as None, the
+                        despeckling algorithm will use the grd_checkpoint directory
+        stride: U-Net is scanned over the image with a default stride of 64 pixels when the image dimension
+                exceeds 256. This parameter modifies the default stride in pixels. Lower pixel count = higher quality
+                results, at the cost of higher runtime
+        store_noisy: Whether to store the "noisy" or input in the save_dir. Default is True
+        generate_png: Whether to generate PNG of the outputs in the save_dir. Default is True
+        debug: Whether to generate print statements at runtime that communicate what is going on
+
+    Returns:
+        None
+    """
     if checkpoint_dir == None:
         checkpoint_dir = Path(__file__).parent / "checkpoint" / "grd_checkpoint"
 
@@ -187,3 +206,5 @@ def run_model(
             store_noisy=store_noisy,
             generate_png=generate_png,
         )
+        if debug:
+            print("[!!!] Done")
