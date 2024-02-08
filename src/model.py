@@ -166,7 +166,7 @@ def run_model(
     save_dir: str,
     checkpoint_dir: str = None,
     stride=64,
-    store_noisy=True,
+    store_noisy=False,
     generate_png=True,
     debug=True,
 ) -> None:
@@ -182,7 +182,7 @@ def run_model(
         stride: U-Net is scanned over the image with a default stride of 64 pixels when the image dimension
                 exceeds 256. This parameter modifies the default stride in pixels. Lower pixel count = higher quality
                 results, at the cost of higher runtime
-        store_noisy: Whether to store the "noisy" or input in the save_dir. Default is True
+        store_noisy: Whether to store the "noisy" or input in the save_dir. Default is False
         generate_png: Whether to generate PNG of the outputs in the save_dir. Default is True
         debug: Whether to generate print statements at runtime that communicate what is going on
 
